@@ -90,7 +90,7 @@ class ProductoRepository(val consola: Consola) {
         val em = EntityManagerService.createEM()
         try {
             em.transaction.begin()
-            val query = em.createQuery("SELECT p FROM productos p WHERE p.stock > 0", Producto::class.java)
+            val query = em.createQuery("SELECT p FROM Producto p WHERE p.stock > 0", Producto::class.java)
             val productos = query.resultList
             em.transaction.commit()
             return productos
@@ -108,7 +108,7 @@ class ProductoRepository(val consola: Consola) {
         val em = EntityManagerService.createEM()
         try {
             em.transaction.begin()
-            val query = em.createQuery("SELECT p FROM productos p WHERE p.stock = 0", Producto::class.java)
+            val query = em.createQuery("SELECT p FROM Producto p WHERE p.stock = 0", Producto::class.java)
             val productos = query.resultList
             em.transaction.commit()
             return productos

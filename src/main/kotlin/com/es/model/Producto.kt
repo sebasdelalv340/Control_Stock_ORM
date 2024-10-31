@@ -55,6 +55,6 @@ class Producto(
                 "\t- Precio con IVA: $precioConIva\n" +
                 "\t- Fecha de alta: $fechaAlta\n" +
                 "\t- Stock: $stock\n" +
-                "\t- Proveedor: $proveedor\n"
+                "\t- Proveedor: ${proveedor?.nombre}\n"
     }
 }

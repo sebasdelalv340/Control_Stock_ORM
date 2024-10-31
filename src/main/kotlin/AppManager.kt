@@ -86,9 +86,9 @@ class AppManager(
 
     private fun modificarStockProducto() {
         val idProducto = consola.pedirString("Introduzca el ID del producto que desea modificar: ")
-        val nuevoStock = consola.pedirString("Introduce el nuevo valor del stock del producto: ")
+        val nuevoStock = consola.pedirEntero("Introduce el nuevo valor del stock del producto: ")
 
-        productoService.modificarNombreProducto(idProducto, nuevoStock)
+        productoService.modificarStockProducto(idProducto, nuevoStock)
     }
 
     private fun getProducto() {

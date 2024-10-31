@@ -1,10 +1,13 @@
 package org.example.com.es.model
 
+import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
+import jakarta.persistence.FetchType
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import jakarta.persistence.JoinColumn
 import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 
@@ -20,7 +23,7 @@ data class Proveedor(
     val direccion: String,
 
     @OneToMany(mappedBy = "proveedor")
-    val productos: List<Producto>? = null,
+    val productos: List<Producto>? = listOf(),
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +33,6 @@ data class Proveedor(
         return "\nProveedor:\n" +
                 "\t- ID: $id\n" +
                 "\t- Nombre: $nombre\n" +
-                "\t- Dirección: $direccion\n" +
-                "\t- Productos: $productos\n"
+                "\t- Dirección: $direccion\n"
     }
 }

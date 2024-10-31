@@ -114,10 +114,10 @@ class ProveedorRepository(val consola: Consola) {
         val em = EntityManagerService.createEM()
         try {
             em.transaction.begin()
-            val query = em.createQuery("SELECT p FROM proveedores", Proveedor::class.java)
-            val proveedor = query.resultList
+            val query = em.createQuery("SELECT p FROM Proveedor p", Proveedor::class.java)
+            val proveedores = query.resultList
             em.transaction.commit()
-            return proveedor
+            return proveedores
         } catch (e: Exception) {
             consola.imprimirMensaje("Error: ${e.message}", true)
             em.transaction.rollback()
