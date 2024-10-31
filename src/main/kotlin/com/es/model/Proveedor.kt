@@ -25,4 +25,12 @@ data class Proveedor(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-)
+) {
+    override fun toString(): String {
+        return "\nProveedor:\n" +
+                "\t- ID: $id\n" +
+                "\t- Nombre: $nombre\n" +
+                "\t- Dirección: $direccion\n" +
+                "\t- Productos: $productos\n"
+    }
+}

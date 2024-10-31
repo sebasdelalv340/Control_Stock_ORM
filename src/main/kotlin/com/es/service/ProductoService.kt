@@ -102,6 +102,13 @@ class ProductoService(val repository: ProductoRepository) {
             )
             repository.updateProducto(nuevoProducto)
         }
+    }
 
+    fun getProductosConStock(): List<Producto?> {
+        return repository.getProductosConStock()
+    }
+
+    fun getProductosSinStock(): List<Producto?> {
+        return repository.getProductosSinStock()
     }
 }

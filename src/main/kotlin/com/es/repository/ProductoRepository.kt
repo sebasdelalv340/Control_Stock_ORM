@@ -1,10 +1,10 @@
 package org.example.com.es.repository
 
-import org.example.com.es.inputOutput.IOutput
+import com.es.inputOutput.Consola
 import org.example.com.es.model.Producto
 import org.example.com.es.service.EntityManagerService
 
-class ProductoRepository(val consola: IOutput) {
+class ProductoRepository(val consola: Consola) {
 
     fun createProducto(producto: Producto) {
         val em = EntityManagerService.createEM()
@@ -104,7 +104,7 @@ class ProductoRepository(val consola: IOutput) {
     }
 
 
-    fun getProductosSinStock(): List<Producto> {
+    fun getProductosSinStock(): List<Producto?> {
         val em = EntityManagerService.createEM()
         try {
             em.transaction.begin()

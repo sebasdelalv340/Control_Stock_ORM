@@ -1,11 +1,11 @@
 package org.example.com.es.repository
 
-import org.example.com.es.inputOutput.IOutput
+import com.es.inputOutput.Consola
 import org.example.com.es.model.Producto
 import org.example.com.es.model.Proveedor
 import org.example.com.es.service.EntityManagerService
 
-class ProveedorRepository(val consola: IOutput) {
+class ProveedorRepository(val consola: Consola) {
 
     fun createProveedor(proveedor: Proveedor) {
         val em = EntityManagerService.createEM()
@@ -98,7 +98,7 @@ class ProveedorRepository(val consola: IOutput) {
                 em.close()
                 return proveedorFromBD
             } else {
-                consola.imprimirMensaje("Producto no encontrado", true)
+                consola.imprimirMensaje("Proveedor no encontrado", true)
             }
         } catch (e: Exception) {
             consola.imprimirMensaje("Error: ${e.message}", true)

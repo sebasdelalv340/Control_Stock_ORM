@@ -40,4 +40,20 @@ class UsuarioService(val repository: UsuarioRepository, val consola: Consola) {
             }
         } while (correcto)
     }
+
+    fun nuevoUsuario() {
+        var correcto = true
+        do {
+            val nombreUsuario = consola.pedirString("Introduzca nuevo nombre de usuario: ")
+            var nuevoUsuario = repository.readUser(nombreUsuario)
+            if(nuevoUsuario != null) {
+                consola.imprimirMensaje("El nombre de usuario ya existe.", true)
+            } else {
+                val nuevaPassword = consola.pedirString("Introduzca nueva contraseña: ")
+                nuevoUsuario = Usuario(nombreUsuario, nuevaPassword)
+                repository.createUser(nuevoUsuario)
+                correcto = false
+            }
+        } while (correcto)
+    }
 }

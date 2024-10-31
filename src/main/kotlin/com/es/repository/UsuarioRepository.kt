@@ -1,10 +1,10 @@
 package org.example.com.es.repository
 
-import org.example.com.es.inputOutput.IOutput
+import com.es.inputOutput.Consola
 import org.example.com.es.model.Usuario
 import org.example.com.es.service.EntityManagerService
 
-class UsuarioRepository(val consola: IOutput) {
+class UsuarioRepository(val consola: Consola) {
 
     fun createUser(user: Usuario) {
         val em = EntityManagerService.createEM()
