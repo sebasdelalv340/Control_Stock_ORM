@@ -8,7 +8,7 @@ class UsuarioService(val repository: UsuarioRepository, val consola: Consola) {
 
     private fun comprobarUsuario(userInput: String): Usuario? {
         val usuario = repository.readUser(userInput)
-        if(usuario != null) {
+        if (usuario != null) {
             return usuario
         } else {
             consola.imprimirMensaje("El usuario introducido no existe.", true)
@@ -19,7 +19,7 @@ class UsuarioService(val repository: UsuarioRepository, val consola: Consola) {
 
     private fun registroUsuario(userInput: String, passInput: String): Boolean {
         val usuario = comprobarUsuario(userInput)
-        if(usuario != null && (passInput == usuario.password)) {
+        if (usuario != null && (passInput == usuario.password)) {
             return true
         } else {
             consola.imprimirMensaje("La contraseña introducida no es correcta.", true)
@@ -44,16 +44,47 @@ class UsuarioService(val repository: UsuarioRepository, val consola: Consola) {
     fun nuevoUsuario() {
         var correcto = true
         do {
-            val nombreUsuario = consola.pedirString("Introduzca nuevo nombre de usuario: ")
+            val nombreUsuario = pedirNombreNoVacio()
             var nuevoUsuario = repository.readUser(nombreUsuario)
-            if(nuevoUsuario != null) {
+            if (nuevoUsuario != null) {
                 consola.imprimirMensaje("El nombre de usuario ya existe.", true)
             } else {
-                val nuevaPassword = consola.pedirString("Introduzca nueva contraseña: ")
+                val nuevaPassword = pedirPasswordNoVacia()
                 nuevoUsuario = Usuario(nombreUsuario, nuevaPassword)
                 repository.createUser(nuevoUsuario)
                 correcto = false
             }
         } while (correcto)
     }
+
+    private fun pedirNombreNoVacio(): String {
+        var correcto = true
+        var nuevoNombre = ""
+        while (correcto) {
+            nuevoNombre = consola.pedirString("Introduzca nuevo nombre de usuario: ")
+            if (nuevoNombre.isEmpty()) {
+                consola.imprimirMensaje("El nombre de usuario no puede estar en blanco. Inténtalo de nuevo.", true)
+            } else {
+                correcto = false
+                return nuevoNombre
+            }
+        }
+        return nuevoNombre
+    }
+
+    private fun pedirPasswordNoVacia(): String {
+        var correcto = true
+        var nuevaPassword = ""
+        while (correcto) {
+            nuevaPassword = consola.pedirString("Introduzca nueva contraseña: ")
+            if (nuevaPassword.isEmpty()) {
+                consola.imprimirMensaje("La contraseña no puede estar en blanco. Inténtalo de nuevo.", true)
+            } else {
+                correcto = false
+                return nuevaPassword
+            }
+        }
+        return nuevaPassword
+    }
+
 }

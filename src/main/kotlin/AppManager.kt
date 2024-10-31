@@ -77,7 +77,7 @@ class AppManager(
 
 
     private fun modificarNombreProducto() {
-        val idProducto = consola.pedirString("Introduzca el ID del producto que desea eliminar: ")
+        val idProducto = consola.pedirString("Introduzca el ID del producto que desea modificar: ")
         val nuevoNombre = consola.pedirString("Introduce el nuevo nombre del producto: ")
 
         productoService.modificarNombreProducto(idProducto, nuevoNombre)
